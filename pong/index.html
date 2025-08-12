@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Pong</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <h1>Pong</h1>
+        <div class="stats">
+          <div>Left: <span id="leftScore">0</span></div>
+          <div>Right: <span id="rightScore">0</span></div>
+          <div>To: <span id="playTo">7</span></div>
+        </div>
+        <div class="actions">
+          <label class="toggle"><input type="checkbox" id="twoPlayer" /> <span>Two Players</span></label>
+          <button id="newGameBtn" class="primary">New Game</button>
+          <button id="pauseBtn" class="secondary">Pause</button>
+        </div>
+      </header>
+
+      <section class="board-wrap">
+        <canvas id="board" width="640" height="400" aria-label="Pong" role="img"></canvas>
+        <div id="overlay" class="overlay hidden" aria-live="polite"></div>
+      </section>
+
+      <footer class="help">
+        <p>
+          Controls: Left paddle W/S, Right paddle ▲/▼. Space toggles pause; when the ball is parked, Space or click launches. Toggle “Two Players” to play locally.
+        </p>
+      </footer>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+  </html>
+

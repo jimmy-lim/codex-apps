@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tetris</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <h1>Tetris</h1>
+        <div class="stats">
+          <div>Score: <span id="score">0</span></div>
+          <div>Lines: <span id="lines">0</span></div>
+          <div>Level: <span id="level">1</span></div>
+        </div>
+        <div class="actions">
+          <button id="newGameBtn" class="primary">New Game</button>
+          <button id="pauseBtn" class="secondary">Pause</button>
+        </div>
+      </header>
+
+      <section class="board-wrap">
+        <canvas id="board" width="360" height="720" aria-label="Tetris" role="img"></canvas>
+        <div id="overlay" class="overlay hidden" aria-live="polite"></div>
+      </section>
+
+      <footer class="help">
+        <p>
+          Controls: ◄/► move, ▼ soft drop, Space hard drop, Z rotate CCW, X or ▲ rotate CW, P pause. Clear lines to level up.
+        </p>
+      </footer>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+  </html>
+

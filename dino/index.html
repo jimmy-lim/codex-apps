@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dino Run</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <h1>Dino Run</h1>
+        <div class="stats">
+          <div>Score: <span id="score">0</span></div>
+          <div>Best: <span id="best">0</span></div>
+          <div>Speed: <span id="speed">0</span></div>
+        </div>
+        <div class="actions">
+          <button id="newGameBtn" class="primary">New Game</button>
+          <button id="pauseBtn" class="secondary">Pause</button>
+        </div>
+      </header>
+
+      <section class="board-wrap">
+        <canvas id="board" width="720" height="240" aria-label="Dino runner" role="img"></canvas>
+        <div id="overlay" class="overlay" aria-live="polite"></div>
+      </section>
+
+      <footer class="help">
+        <p>
+          Press Space/Up/W or click/tap to jump. Hold Down/S to duck. Avoid obstacles; speed increases over time.
+        </p>
+      </footer>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+  </html>
+

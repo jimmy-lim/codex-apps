@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Minesweeper</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <h1>Minesweeper</h1>
+        <div class="stats">
+          <div>Mines: <span id="minesLeft">0</span></div>
+          <div>Time: <span id="time">0</span>s</div>
+          <div>Status: <span id="status">Ready</span></div>
+        </div>
+        <div class="actions">
+          <label class="select">
+            <span>Difficulty</span>
+            <select id="difficulty">
+              <option value="beginner">Beginner 9×9 (10)</option>
+              <option value="intermediate">Intermediate 16×16 (40)</option>
+              <option value="expert">Expert 30×16 (99)</option>
+            </select>
+          </label>
+          <button id="newGameBtn" class="primary">New Game</button>
+        </div>
+      </header>
+
+      <section class="board-wrap">
+        <div id="board" class="board" role="grid" aria-label="Minesweeper board"></div>
+        <div id="overlay" class="overlay hidden" aria-live="polite"></div>
+      </section>
+
+      <footer class="help">
+        <p>
+          Left‑click to reveal; Right‑click or Shift‑click to flag. First click is always safe. Click a number to chord if you flagged its neighbors.
+        </p>
+      </footer>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+  </html>
+
