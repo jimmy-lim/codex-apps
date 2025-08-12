@@ -54,7 +54,7 @@ def make_handler(root_dir: str):
                 return None
 
             # Filter out sensitive/unwanted entries
-            hidden = {'.git', 'serve.py', '__pycache__'}
+            hidden = {'.git', '.gitignore', 'README.md', 'serve.py', '__pycache__'}
             names = [n for n in names if n not in hidden]
             names.sort(key=lambda a: a.lower())
 
@@ -111,7 +111,6 @@ def main():
     print(f"Serving '{path_display}' at http://{args.host}:{args.port}")
     if os.path.isdir(snake_path):
         print(f"Snake game: http://{args.host}:{args.port}/snake/")
-        print(f"(Requests to /snake will redirect to /snake/.)")
     ttt_path = os.path.join(args.root, 'tictactoe')
     if os.path.isdir(ttt_path):
         print(f"Tic‑Tac‑Toe: http://{args.host}:{args.port}/tictactoe/")
