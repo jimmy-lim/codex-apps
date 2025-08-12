@@ -99,36 +99,12 @@ def main():
     parser.add_argument('--root', default=script_dir, help='Root directory to serve (default: this folder)')
     args = parser.parse_args()
 
-    snake_path = os.path.join(args.root, 'snake')
-    if not os.path.isdir(snake_path):
-        print(f"Warning: '{snake_path}' does not exist. Ensure the 'snake' folder is under the root.")
-
     handler = make_handler(args.root)
     server = ThreadingHTTPServer((args.host, args.port), handler)
 
     rel = os.path.relpath(args.root, os.getcwd())
     path_display = args.root if rel.startswith('..') else rel
     print(f"Serving '{path_display}' at http://{args.host}:{args.port}")
-    if os.path.isdir(snake_path):
-        print(f"Snake game: http://{args.host}:{args.port}/snake/")
-    ttt_path = os.path.join(args.root, 'tictactoe')
-    if os.path.isdir(ttt_path):
-        print(f"Tic‑Tac‑Toe: http://{args.host}:{args.port}/tictactoe/")
-    br_path = os.path.join(args.root, 'breakout')
-    if os.path.isdir(br_path):
-        print(f"Breakout: http://{args.host}:{args.port}/breakout/")
-    pong_path = os.path.join(args.root, 'pong')
-    if os.path.isdir(pong_path):
-        print(f"Pong: http://{args.host}:{args.port}/pong/")
-    tetris_path = os.path.join(args.root, 'tetris')
-    if os.path.isdir(tetris_path):
-        print(f"Tetris: http://{args.host}:{args.port}/tetris/")
-    ms_path = os.path.join(args.root, 'minesweeper')
-    if os.path.isdir(ms_path):
-        print(f"Minesweeper: http://{args.host}:{args.port}/minesweeper/")
-    dino_path = os.path.join(args.root, 'dino')
-    if os.path.isdir(dino_path):
-        print(f"Dino Run: http://{args.host}:{args.port}/dino/")
     print("Press Ctrl+C to stop.")
 
     try:

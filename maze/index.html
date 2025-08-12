@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Maze Generator</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <h1>Maze Generator</h1>
+        <div class="stats">
+          <div>Size: <span id="sizeStat">20×20</span></div>
+          <div>Cells: <span id="cellsStat">400</span></div>
+          <div>Dead‑ends: <span id="deadEndsStat">0</span></div>
+          <div>Path: <span id="pathLenStat">0</span></div>
+          <div>Run: <span id="runTime">0.00</span>s</div>
+        </div>
+        <div class="actions">
+          <label class="ctrl"><span>W</span><input type="number" id="widthInp" value="20" min="5" max="200" /></label>
+          <label class="ctrl"><span>H</span><input type="number" id="heightInp" value="20" min="5" max="200" /></label>
+          <label class="ctrl">
+            <span>Algo</span>
+            <select id="algoSel">
+              <option value="backtracker">Recursive Backtracker</option>
+              <option value="prim">Prim’s (randomized)</option>
+            </select>
+          </label>
+          <label class="ctrl"><input type="checkbox" id="animateChk" /> <span>Animate</span></label>
+          <label class="ctrl"><span>Speed</span><input type="range" id="speedRange" min="1" max="60" value="30" /></label>
+          <button id="genBtn" class="primary">Generate</button>
+          <button id="startRunBtn" class="secondary">Start Run</button>
+          <button id="solveBtn" class="secondary">Solve</button>
+          <button id="clearBtn" class="secondary">Clear</button>
+          <!-- <button id="downloadBtn" class="secondary">Download PNG</button> -->
+        </div>
+      </header>
+
+      <section class="board-wrap">
+        <canvas id="board" width="720" height="720" aria-label="Maze" role="img"></canvas>
+        <div id="overlay" class="overlay hidden" aria-live="polite"></div>
+      </section>
+
+      <footer class="help">
+        <p>
+          Generates a perfect maze (single path between cells). Start is top‑left, goal is bottom‑right. Click Solve to show a path. Resize inputs and pick an algorithm, then Generate. When Animate is on, generation is visualized.
+        </p>
+      </footer>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+  </html>
