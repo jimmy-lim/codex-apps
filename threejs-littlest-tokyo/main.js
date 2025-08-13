@@ -38,12 +38,14 @@ function init() {
   scene = new THREE.Scene();
   scene.background = new THREE.Color(0xbfe3dd);
 
-  camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.25, 100);
-  camera.position.set(4.5, 2.0, 7.0);
+  camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 1, 100);
+  camera.position.set(5, 2, 8);
 
   controls = new OrbitControls(camera, renderer.domElement);
   controls.enableDamping = true;
-  controls.target.set(0, 1.0, 0);
+  controls.enablePan = false;
+  controls.target.set(0, 0.5, 0);
+  controls.update();
 
   clock = new THREE.Clock();
 
@@ -108,8 +110,9 @@ function loadGLTF() {
       const yOffset = -box.min.y;
       model.position.y += yOffset;
 
-      // Frame camera and controls to the model bounds
-      frameToBox(box);
+      // Match official example orbit target
+      controls.target.set(0, 0.5, 0);
+      controls.update();
 
       mixer = new THREE.AnimationMixer(model);
       // The model contains a single keyframe animation clip
@@ -157,29 +160,4 @@ function animate() {
   renderer.render(scene, camera);
 }
 
-function frameToBox(box) {
-  const size = box.getSize(new THREE.Vector3());
-  const center = new THREE.Vector3(0, (box.max.y + box.min.y) * 0.5, 0); // model centered at origin
-
-  // Set controls target to model center
-  controls.target.copy(center);
-
-  // Compute a good distance to frame the object
-  const maxSize = Math.max(size.x, size.y, size.z);
-  const fov = THREE.MathUtils.degToRad(camera.fov);
-  const fitHeightDistance = maxSize / (2 * Math.tan(fov / 2));
-  const fitWidthDistance = fitHeightDistance / camera.aspect;
-  const distance = Math.max(fitHeightDistance, fitWidthDistance) * 1.4; // add some margin
-
-  // Keep a nice viewing angle (azimuth -35°, elevation 25°)
-  const phi = THREE.MathUtils.degToRad(65); // from Y axis
-  const theta = THREE.MathUtils.degToRad(-35);
-  const pos = new THREE.Spherical(distance, phi, theta);
-  const posVec = new THREE.Vector3().setFromSpherical(pos).add(center);
-
-  camera.position.copy(posVec);
-  camera.near = distance / 100;
-  camera.far = distance * 100;
-  camera.updateProjectionMatrix();
-  controls.update();
-}
+// Orbit target and camera mimic the official example; no custom framing needed.
